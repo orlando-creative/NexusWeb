@@ -1,0 +1,726 @@
+/* ===============================
+    IMPORTACIONES Y VARIABLES
+================================ */
+/* Importar Google Fonts: Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+:root {
+    /* Paleta de Colores (Según Requisitos) */
+    --color-principal: #002D62; /* Azul marino */
+    --color-acento: #04BF9D; /* Verde turquesa brillante */
+    --color-secundario-fondo: #F7F7F7; /* Gris claro */
+    --color-fondo: #FFFFFF; /* Blanco */
+    
+    /* Colores derivados y de texto */
+    --color-principal-hover: #001f44; /* Azul más oscuro */
+    --color-acento-hover: #03a68a; /* Turquesa más oscuro */
+    --color-texto: #333333;
+    --color-texto-secundario: #555555;
+    --color-blanco: #FFFFFF;
+    --color-borde: #E0E0E0;
+    
+    /* Tipografía */
+    --fuente-principal: 'Inter', sans-serif;
+
+    /* Sombra (para dar profundidad) */
+    --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --sombra-card-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+    ESTILOS GLOBALES Y RESET
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--color-acento);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-acento-hover);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--color-principal);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--color-texto-secundario);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ===============================
+    UTILIDADES
+================================ */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+}
+
+/* ===============================
+    BOTONES
+================================ */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-acento);
+    color: var(--color-principal);
+    font-weight: 700;
+}
+.btn-primary:hover {
+    background-color: var(--color-acento-hover);
+    color: var(--color-principal);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(4, 191, 157, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-principal);
+    border: 2px solid var(--color-principal);
+}
+.btn-secondary:hover {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    transform: translateY(-3px);
+}
+
+/* ===============================
+    HEADER Y NAVEGACIÓN
+================================ */
+.header {
+    background-color: var(--color-fondo);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem; /* 80px */
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-principal);
+    z-index: 1010;
+}
+.logo:hover {
+    color: var(--color-principal);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-menu-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-menu-link:hover {
+    background-color: var(--color-secundario-fondo);
+    color: var(--color-principal);
+}
+
+/* Estilo para el link activo */
+.nav-menu-link.active {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    font-weight: 600;
+}
+.nav-menu-link.active:hover {
+    background-color: var(--color-principal-hover);
+    color: var(--color-blanco);
+}
+
+/* Checkbox invisible (Checkbox Hack) */
+.nav-toggle-checkbox {
+    display: none;
+}
+
+/* Botón Hamburguesa (Label) */
+.nav-toggle {
+    display: none; /* Oculto en desktop */
+    cursor: pointer;
+    z-index: 1010;
+    padding: 0.5rem;
+}
+.nav-toggle .bar {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 6px 0;
+    background-color: var(--color-principal);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ===============================
+    SECCIÓN HERO (PORTADA)
+================================ */
+.hero {
+    background-color: var(--color-secundario-fondo);
+    padding: 6rem 1.5rem;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ===============================
+    SECCIÓN "PAGE HEADER" (Para páginas internas)
+================================ */
+.page-header {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+.page-header h1 {
+    color: var(--color-blanco);
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+.page-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* ===============================
+    SECCIONES DE CARACTERÍSTICAS
+================================ */
+.features-section {
+    padding: 5rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--color-fondo);
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-card);
+}
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--color-acento);
+    margin-bottom: 1.5rem;
+}
+.feature-title {
+    font-size: 1.4rem;
+    color: var(--color-principal);
+}
+
+/* Fondo alterno para la sección "incluidos" */
+.included-features {
+    background-color: var(--color-secundario-fondo);
+}
+.included-features .feature-card {
+    background-color: var(--color-fondo);
+}
+
+/* ===============================
+    SECCIÓN CTA (CALL TO ACTION)
+================================ */
+.cta-section {
+    background-color: var(--color-principal);
+    padding: 5rem 1.5rem;
+    color: var(--color-blanco);
+}
+.cta-section h2 {
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+}
+.cta-section p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+.cta-section .btn-primary {
+    background-color: var(--color-acento);
+    color: var(--color-principal);
+}
+.cta-section .btn-primary:hover {
+    background-color: var(--color-blanco);
+    color: var(--color-principal);
+    box-shadow: none;
+}
+
+
+/* ===============================
+    SECCIÓN PRECIOS (servicios.html)
+================================ */
+.pricing-section {
+    padding: 5rem 0;
+}
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.card {
+    background: var(--color-blanco);
+    border-radius: 12px;
+    box-shadow: var(--sombra-card);
+    overflow: hidden;
+    border: 1px solid var(--color-borde);
+    transition: all 0.3s ease;
+}
+
+.pricing-card.recommended {
+    border: 3px solid var(--color-acento);
+    transform: scale(1.03);
+}
+
+.card-header {
+    padding: 2rem;
+    background-color: var(--color-secundario-fondo);
+    border-bottom: 1px solid var(--color-borde);
+    position: relative;
+}
+.card-header h3 {
+    font-size: 1.6rem;
+    color: var(--color-principal);
+}
+.card-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-acento);
+    margin: 0.5rem 0;
+}
+.card-header p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Badge "Recomendado" */
+.badge {
+    position: absolute;
+    top: -1px;
+    right: 2rem;
+    background-color: var(--color-acento);
+    color: var(--color-principal);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 6px 6px;
+}
+
+.card-body {
+    padding: 2rem;
+}
+.card-features-list {
+    margin-top: 1.5rem;
+}
+.card-features-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.card-features-list li i {
+    color: var(--color-acento);
+    font-size: 1.2rem;
+}
+
+.card-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+
+/* ===============================
+    PÁGINA: NOSOTROS
+================================ */
+.about-section {
+    padding: 5rem 0;
+}
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+.about-image img {
+    border-radius: 12px;
+    box-shadow: var(--sombra-card);
+}
+.about-content h3 {
+    color: var(--color-acento);
+    font-size: 1.6rem;
+    margin-top: 2rem;
+}
+
+/* Redes Sociales (Nosotros) */
+.social-section {
+    padding: 3rem 0 5rem 0;
+    background-color: var(--color-secundario-fondo);
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.social-link:hover {
+    color: var(--color-principal);
+    transform: translateY(-5px);
+}
+.social-icon {
+    font-size: 3rem; /* 48px */
+    margin-bottom: 0.5rem;
+    color: var(--color-principal);
+    transition: color 0.3s ease;
+}
+.social-link:hover .social-icon {
+    color: var(--color-acento);
+}
+
+/* ===============================
+    PÁGINA: CONTACTO
+================================ */
+.contact-section {
+    padding: 5rem 0;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.info-list {
+    margin: 2rem 0;
+}
+.info-list li {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+.info-list li i {
+    font-size: 1.3rem;
+    color: var(--color-principal);
+    flex-shrink: 0;
+    width: 25px;
+    text-align: center;
+    margin-top: 3px;
+}
+
+/* Botón de WhatsApp en la página de contacto */
+.btn-whatsapp {
+    background-color: #25D366;
+    color: var(--color-blanco);
+    font-weight: 700;
+    border-color: #25D366;
+}
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    color: var(--color-blanco);
+    border-color: #128C7E;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+}
+.btn-whatsapp i {
+    margin-right: 0.5rem;
+}
+
+/* Mapa Responsivo */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Ratio 1:1. Ajustar si es necesario (75% para 4:3) */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--color-borde);
+}
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ===============================
+    FOOTER
+================================ */
+.footer {
+    background-color: var(--color-principal);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 3rem 1.5rem;
+    margin-top: 3rem;
+}
+.footer p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0.25rem 0;
+}
+
+/* ===============================
+    BOTÓN FLOTANTE WHATSAPP
+================================ */
+.whatsapp-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25D366;
+    color: var(--color-blanco);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 900;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.whatsapp-flotante:hover {
+    background-color: #128C7E;
+    color: var(--color-blanco);
+    transform: scale(1.1);
+}
+
+
+/* ===============================
+    DISEÑO RESPONSIVE
+================================ */
+
+/* Tablets (hasta 992px) */
+@media (max-width: 992px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    .pricing-card.recommended {
+        transform: scale(1); /* Resetear escala en tablet */
+    }
+    
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr; /* Apila las columnas */
+    }
+    
+    .about-image {
+        order: -1; /* Mueve la imagen arriba en "Nosotros" */
+    }
+    
+    .contact-map {
+        margin-top: 2rem;
+    }
+    .map-container {
+        padding-bottom: 75%; /* Ratio 4:3 para tablet/móvil */
+    }
+}
+
+/* Móviles (hasta 768px) */
+@media (max-width: 768px) {
+    h1, .hero-title { font-size: 2.2rem; }
+    h2, .section-title { font-size: 1.8rem; }
+    
+    .hero {
+        padding: 4rem 1.5rem;
+    }
+
+    /* --- NAVEGACIÓN MÓVIL (Checkbox Hack) --- */
+    
+    /* Mostramos el botón hamburguesa */
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Ocultamos el menú de navegación */
+    .nav-menu {
+        position: absolute;
+        top: 5rem; /* Altura del header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-fondo);
+        
+        /* Oculto por defecto */
+        visibility: hidden;
+        opacity: 0;
+        
+        /* Efecto de despliegue */
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+
+        /* Estilos de los items en columna */
+        flex-direction: column;
+        gap: 0;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--color-borde);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    }
+    
+    .nav-menu-link {
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        border-top: 1px solid var(--color-secundario-fondo);
+    }
+    
+    .nav-menu-item:first-child .nav-menu-link {
+        border-top: none;
+    }
+
+    /* --- LA MAGIA (Checkbox Hack) --- */
+    
+    /* Cuando el checkbox está marcado... */
+    .nav-toggle-checkbox:checked ~ .nav-menu {
+        /* ...mostramos el menú */
+        visibility: visible;
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    
+    /* ...animamos el botón a una 'X' */
+    .nav-toggle-checkbox:checked ~ .nav-toggle .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .nav-toggle-checkbox:checked ~ .nav-toggle .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-toggle-checkbox:checked ~ .nav-toggle .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero {
+        padding: 3rem 1rem;
+    }
+    .hero-title { font-size: 2rem; }
+    .hero-description { font-size: 1.1rem; }
+
+    .btn {
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    .hero-buttons {
+        gap: 0.5rem;
+    }
+    .hero-buttons .btn-secondary {
+        margin-top: 0.5rem;
+    }
+}

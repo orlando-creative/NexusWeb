@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Nexus Web</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Header y Navegación -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">Nexus Web</a>
+            <input type="checkbox" id="nav-toggle-checkbox" class="nav-toggle-checkbox">
+            <ul class="nav-menu">
+                <li class="nav-menu-item">
+                    <a href="index.html" class="nav-menu-link">Inicio</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="servicios.html" class="nav-menu-link">Servicios</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="nosotros.html" class="nav-menu-link">Nosotros</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="contacto.html" class="nav-menu-link active">Contacto</a>
+                </li>
+            </ul>
+            <label for="nav-toggle-checkbox" class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Encabezado de Página -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Hablemos de tu Proyecto</h1>
+                <p>Estamos listos para ayudarte a digitalizar tu idea.</p>
+            </div>
+        </section>
+
+        <!-- ===============================
+            SECCIÓN DE CONTACTO Y MAPA
+        ================================ -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    
+                    <!-- Columna de Información -->
+                    <div class="contact-info">
+                        <h2 class="section-title" style="text-align: left;">Información de Contacto</h2>
+                        <p>Puedes contactarnos directamente por WhatsApp para una respuesta más rápida, o visitarnos en nuestra unidad educativa.</p>
+                        
+                        <ul class="info-list">
+                            <li>
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>+591 712 34 567 (Solo WhatsApp)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>contacto@nexusweb.bo (Proximamente)</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>U.E. Luz del Mundo A, Plan 3000, Santa Cruz de la Sierra, Bolivia.</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="https://api.whatsapp.com/send?phone=591XXXXXXXX" target="_blank" class="btn btn-primary btn-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> Enviar Mensaje Directo
+                        </a>
+                    </div>
+                    
+                    <!-- Columna de Mapa -->
+                    <div class="contact-map">
+                        <h2 class="section-title" style="text-align: left;">Nuestra Ubicación</h2>
+                        <div class="map-container">
+                            <!-- Mapa de Google Maps (Embed) apuntando al área del Plan 3000 -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15194.88753238637!2d-63.15546197368694!3d-17.83279860635332!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e9f29196b051%3A0x600c3b01c31b3c0c!2sPlan%203000%2C%20Santa%20Cruz%20de%20la%20Sierra!5e0!3m2!1ses!2sbo!4v1678888888888" 
+                                width="600" 
+                                height="450" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nexus Web Bolivia. Todos los derechos reservados.</p>
+            <p>Un emprendimiento estudiantil - Santa Cruz, Bolivia.</p>
+        </div>
+    </footer>
+    
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://api.whatsapp.com/send?phone=591XXXXXXXX" target="_blank" class="whatsapp-flotante" aria-label="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>

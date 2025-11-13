@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios y Precios - Nexus Web</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Header y Navegación -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">Nexus Web</a>
+            <input type="checkbox" id="nav-toggle-checkbox" class="nav-toggle-checkbox">
+            <ul class="nav-menu">
+                <li class="nav-menu-item">
+                    <a href="index.html" class="nav-menu-link">Inicio</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="servicios.html" class="nav-menu-link active">Servicios</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="nosotros.html" class="nav-menu-link">Nosotros</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="contacto.html" class="nav-menu-link">Contacto</a>
+                </li>
+            </ul>
+            <label for="nav-toggle-checkbox" class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Encabezado de Página -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Planes y Precios</h1>
+                <p>Soluciones claras y accesibles para tu negocio.</p>
+            </div>
+        </section>
+
+        <!-- ===============================
+            SECCIÓN DE PRECIOS
+        ================================ -->
+        <section class="pricing-section">
+            <div class="container">
+                <h2 class="section-title">Elige el plan ideal para ti</h2>
+                <div class="pricing-grid">
+                    
+                    <!-- Plan Básico -->
+                    <div class="card pricing-card">
+                        <div class="card-header">
+                            <h3>Plan Básico (Landing Page)</h3>
+                            <span class="card-price">Bs 350</span>
+                            <p>Pago único</p>
+                        </div>
+                        <div class="card-body">
+                            <p>Ideal para presentar tu negocio, servicios e información de contacto en una sola página.</p>
+                            <ul class="card-features-list">
+                                <li><i class="fa-solid fa-check"></i> Diseño de Página Única (Landing Page)</li>
+                                <li><i class="fa-solid fa-check"></i> 100% Adaptable a celulares</li>
+                                <li><i class="fa-solid fa-check"></i> Galería de hasta 10 fotos</li>
+                                <li><i class="fa-solid fa-check"></i> Botones de WhatsApp y Redes Sociales</li>
+                                <li><i class="fa-solid fa-check"></i> Mapa de Ubicación</li>
+                            </ul>
+                            <a href="contacto.html" class="btn btn-primary card-btn">Lo quiero</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Plan Catálogo -->
+                    <div class="card pricing-card recommended">
+                        <div class="card-header">
+                            <span class="badge">Recomendado</span>
+                            <h3>Plan Catálogo</h3>
+                            <span class="card-price">Bs 550</span>
+                            <p>Pago único</p>
+                        </div>
+                        <div class="card-body">
+                            <p>Perfecto para mostrar todos tus productos o servicios de forma organizada y profesional.</p>
+                            <ul class="card-features-list">
+                                <li><i class="fa-solid fa-check"></i> Todo lo del Plan Básico</li>
+                                <li><i class="fa-solid fa-check"></i> <strong>Catálogo de Productos (hasta 20)</strong></li>
+                                <li><i class="fa-solid fa-check"></i> Página de producto individual (opcional)</li>
+                                <li><i class="fa-solid fa-check"></i> Múltiples secciones (Inicio, Catálogo, Contacto)</li>
+                                <li><i class="fa-solid fa-check"></i> Optimización de imágenes</li>
+                            </ul>
+                            <a href="contacto.html" class="btn btn-primary card-btn">Lo quiero</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===============================
+            SECCIÓN "QUÉ INCLUYEN"
+        ================================ -->
+        <section class="features-section included-features">
+            <div class="container">
+                <h2 class="section-title">Todos nuestros planes incluyen</h2>
+                <div class="features-grid">
+                    
+                    <div class="feature-card">
+                        <i class="fa-solid fa-shield-halved feature-icon"></i>
+                        <h3 class="feature-title">Seguridad (SSL)</h3>
+                        <p>Tu sitio contará con candado de seguridad (HTTPS) para generar confianza.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fa-solid fa-headset feature-icon"></i>
+                        <h3 class="feature-title">Soporte Estudiantil</h3>
+                        <p>Te ayudamos a desplegar tu web (Hosting y Dominio no incluidos, te asesoramos).</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fa-solid fa-palette feature-icon"></i>
+                        <h3 class="feature-title">Diseño Personalizado</h3>
+                        <p>Ajustamos los colores y el logo para que coincidan con la identidad de tu marca.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nexus Web Bolivia. Todos los derechos reservados.</p>
+            <p>Un emprendimiento estudiantil - Santa Cruz, Bolivia.</p>
+        </div>
+    </footer>
+    
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://api.whatsapp.com/send?phone=591XXXXXXXX" target="_blank" class="whatsapp-flotante" aria-label="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
