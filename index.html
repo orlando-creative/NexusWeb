@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Web - Diseño Web para PYMEs en Santa Cruz</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (Iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Hoja de Estilos Principal -->
+    <link rel="stylesheet" href="estilos.css">
+    
+    <!-- Favicon (Placeholder) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+    <!-- ===============================
+        HEADER Y NAVEGACIÓN
+    ================================ -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">Nexus Web</a>
+            
+            <!-- Checkbox Hack para Menú Responsive -->
+            <input type="checkbox" id="nav-toggle-checkbox" class="nav-toggle-checkbox">
+            
+            <!-- Menú de Navegación -->
+            <ul class="nav-menu">
+                <li class="nav-menu-item">
+                    <a href="index.html" class="nav-menu-link active">Inicio</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="servicios.html" class="nav-menu-link">Servicios</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="nosotros.html" class="nav-menu-link">Nosotros</a>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="contacto.html" class="nav-menu-link">Contacto</a>
+                </li>
+            </ul>
+            
+            <!-- Botón Hamburguesa (Label del Checkbox) -->
+            <label for="nav-toggle-checkbox" class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+            
+        </nav>
+    </header>
+
+    <main>
+        <!-- ===============================
+            SECCIÓN HERO (PORTADA)
+        ================================ -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Digitalizamos tu Negocio en Santa Cruz</h1>
+                <p class="hero-description">
+                    Creamos catálogos web y páginas estáticas, profesionales y de bajo costo.
+                    Perfecto para PYMEs y emprendedores bolivianos.
+                </p>
+                <div class="hero-buttons">
+                    <a href="servicios.html" class="btn btn-primary">Ver Planes</a>
+                    <a href="contacto.html" class="btn btn-secondary">Contáctanos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===============================
+            SECCIÓN DE CARACTERÍSTICAS
+        ================================ -->
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Tu presencia digital, simple y efectiva</h2>
+                
+                <div class="features-grid">
+                    <!-- Característica 1 -->
+                    <div class="feature-card">
+                        <i class="fa-solid fa-bolt feature-icon"></i>
+                        <h3 class="feature-title">Carga Rápida</h3>
+                        <p>Sitios estáticos ultra-rápidos que garantizan la mejor experiencia de usuario.</p>
+                    </div>
+                    
+                    <!-- Característica 2 -->
+                    <div class="feature-card">
+                        <i class="fa-solid fa-mobile-screen-button feature-icon"></i>
+                        <h3 class="feature-title">100% Responsive</h3>
+                        <p>Tu catálogo se verá perfecto en celulares, tablets y computadoras.</p>
+                    </div>
+                    
+                    <!-- Característica 3 -->
+                    <div class="feature-card">
+                        <i class="fa-solid fa-coins feature-icon"></i>
+                        <h3 class="feature-title">Precios Justos</h3>
+                        <p>Soluciones accesibles pensadas por estudiantes para emprendedores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===============================
+            SECCIÓN CTA (CALL TO ACTION)
+        ================================ -->
+        <section class="cta-section">
+            <div class="container text-center">
+                <h2>¿Listo para mostrar tus productos al mundo?</h2>
+                <p>Hablemos de tu proyecto. Te asesoramos sin compromiso.</p>
+                <a href="contacto.html" class="btn btn-primary">Empezar Ahora</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===============================
+        FOOTER
+    ================================ -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nexus Web Bolivia. Todos los derechos reservados.</p>
+            <p>Un emprendimiento estudiantil - Santa Cruz, Bolivia.</p>
+        </div>
+    </footer>
+    
+    <!-- ===============================
+        BOTÓN FLOTANTE WHATSAPP
+    ================================ -->
+    <a href="https://api.whatsapp.com/send?phone=591XXXXXXXX" target="_blank" class="whatsapp-flotante" aria-label="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
