@@ -3,139 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Web - Diseño Web para PYMEs en Santa Cruz</title>
+    <title>Nexus Web | Estudio de Desarrollo Digital</title>
     
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome (Iconos) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Hoja de Estilos Principal -->
-    <link rel="stylesheet" href="estilos.css">
-    
-    <!-- Favicon (Placeholder) -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- ===============================
-        HEADER Y NAVEGACIÓN
-    ================================ -->
-    <header class="header">
-        <nav class="nav container">
-            <a href="index.html" class="logo">Nexus Web</a>
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="img/logo.svg" class="logo" alt="">
+                <span class="text-2xl font-extrabold text-white tracking-tight">Nexus<span class="text-[#29B6F6]">Web</span></span>
+            </a>
             
-            <!-- Checkbox Hack para Menú Responsive -->
-            <input type="checkbox" id="nav-toggle-checkbox" class="nav-toggle-checkbox">
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="servicios.html" class="nav-link">Servicios</a>
+                <a href="portafolio.html" class="nav-link">Portafolio</a>
+                <a href="contacto.html" class="bg-[#1E88E5] text-white px-6 py-2.5 rounded-full font-bold hover:bg-[#29B6F6] transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                    Iniciar Proyecto
+                </a>
+            </div>
             
-            <!-- Menú de Navegación -->
-            <ul class="nav-menu">
-                <li class="nav-menu-item">
-                    <a href="index.html" class="nav-menu-link active">Inicio</a>
-                </li>
-                <li class="nav-menu-item">
-                    <a href="servicios.html" class="nav-menu-link">Servicios</a>
-                </li>
-                <li class="nav-menu-item">
-                    <a href="nosotros.html" class="nav-menu-link">Nosotros</a>
-                </li>
-                <li class="nav-menu-item">
-                    <a href="contacto.html" class="nav-menu-link">Contacto</a>
-                </li>
-            </ul>
+            <button class="md:hidden text-white text-2xl focus:outline-none" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Menú Móvil -->
+        <div class="hidden absolute top-full left-0 right-0 bg-[#002244] border-t border-white/10 shadow-2xl opacity-0 -translate-y-4" id="mobileMenu">
+            <div class="p-4 flex flex-col space-y-2">
+                <a href="index.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10">Inicio</a>
+                <a href="servicios.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10">Servicios</a>
+                <a href="portafolio.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10">Portafolio</a>
+                <a href="contacto.html" class="block px-4 py-3 bg-[#1E88E5] text-white rounded-lg text-center font-bold mt-2">Iniciar Proyecto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient pt-32 pb-24 px-6 min-h-screen flex items-center relative">
+        <div class="hero-bg-shape"></div>
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="fade-in-up">
+                <span class="inline-block bg-[#1E88E5]/20 text-[#29B6F6] px-4 py-1.5 rounded-full text-sm font-bold mb-6 border border-[#1E88E5]/30">
+                    🚀 DESARROLLO WEB PREMIUM
+                </span>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                    Digitaliza tu visión con <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#29B6F6] to-[#00E676]">código perfecto.</span>
+                </h1>
+                <p class="text-lg text-blue-100 mb-8 max-w-lg leading-relaxed">
+                    Especialistas en crear sitios web rápidos, seguros y diseñados para convertir visitantes en clientes. Tu negocio merece estar online hoy mismo.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="contacto.html" class="bg-[#1E88E5] text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-[#1565C0] transition flex items-center justify-center gap-2 group">
+                        Cotizar Ahora 
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="portafolio.html" class="border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition text-center backdrop-blur-sm">
+                        Ver Trabajos
+                    </a>
+                </div>
+            </div>
             
-            <!-- Botón Hamburguesa (Label del Checkbox) -->
-            <label for="nav-toggle-checkbox" class="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </label>
-            
-        </nav>
+            <div class="relative fade-in-up delay-200">
+                <div class="bg-white/5 backdrop-blur-xl p-4 rounded-3xl border border-white/20 shadow-2xl relative">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000&auto=format&fit=crop" alt="Dashboard Design" class="rounded-2xl shadow-inner w-full">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 border-l-4 border-[#00E676] animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-[#00E676] text-xl">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-[#003366] text-sm">Respuesta Rápida</p>
+                            <p class="text-xs text-gray-500">Atención inmediata</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <!-- ===============================
-            SECCIÓN HERO (PORTADA)
-        ================================ -->
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title">Digitalizamos tu Negocio en Santa Cruz</h1>
-                <p class="hero-description">
-                    Creamos catálogos web y páginas estáticas, profesionales y de bajo costo.
-                    Perfecto para PYMEs y emprendedores bolivianos.
+    <!-- Resumen de Servicios -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl font-extrabold text-[#091E42] mb-4">Soluciones Integrales</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">No solo hacemos páginas web, construimos herramientas digitales que impulsan tu crecimiento.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-white border border-gray-100 card-hover fade-in-up delay-100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-[#1E88E5] text-2xl mb-6">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#091E42] mb-3">Diseño UI/UX</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Interfaces modernas y limpias pensadas para que tus usuarios se enamoren de tu marca al primer clic.</p>
+                    <a href="servicios.html" class="inline-block mt-4 text-[#1E88E5] font-semibold text-sm hover:underline">Saber más</a>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white border border-gray-100 card-hover fade-in-up delay-200">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl mb-6">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#091E42] mb-3">Desarrollo a Medida</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Desde landing pages hasta sistemas complejos. Código limpio, rápido y optimizado para SEO.</p>
+                    <a href="servicios.html" class="inline-block mt-4 text-purple-600 font-semibold text-sm hover:underline">Saber más</a>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white border border-gray-100 card-hover fade-in-up delay-300">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#091E42] mb-3">Marketing & SEO</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Posicionamos tu sitio en Google y optimizamos la conversión para que vendas más.</p>
+                    <a href="servicios.html" class="inline-block mt-4 text-green-600 font-semibold text-sm hover:underline">Saber más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Reseñas (Compacta) -->
+    <section class="py-20 px-6 bg-[#002244] border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-8">Lo que dicen nuestros clientes</h2>
+            <div id="reviewsContainer" class="grid gap-4 text-left max-h-[400px] overflow-y-auto custom-scroll pr-2">
+                <div class="text-white/50 text-center py-10">
+                    <i class="fas fa-circle-notch fa-spin text-2xl"></i><br>Cargando reseñas...
+                </div>
+            </div>
+            <div class="mt-8">
+                <a href="contacto.html" class="text-[#29B6F6] hover:text-white transition font-medium">¿Quieres dejar tu reseña? Contáctanos primero.</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#001529] text-white pt-16 pb-8 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="img/logo.svg" alt="" class="logo">
+                    <span class="text-xl font-bold">NexusWeb</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                    Ayudamos a emprendedores y empresas a destacar en la era digital con soluciones web innovadoras y efectivas.
                 </p>
-                <div class="hero-buttons">
-                    <a href="servicios.html" class="btn btn-primary">Ver Planes</a>
-                    <a href="contacto.html" class="btn btn-secondary">Contáctanos</a>
-                </div>
             </div>
-        </section>
-
-        <!-- ===============================
-            SECCIÓN DE CARACTERÍSTICAS
-        ================================ -->
-        <section class="features-section">
-            <div class="container">
-                <h2 class="section-title">Tu presencia digital, simple y efectiva</h2>
-                
-                <div class="features-grid">
-                    <!-- Característica 1 -->
-                    <div class="feature-card">
-                        <i class="fa-solid fa-bolt feature-icon"></i>
-                        <h3 class="feature-title">Carga Rápida</h3>
-                        <p>Sitios estáticos ultra-rápidos que garantizan la mejor experiencia de usuario.</p>
-                    </div>
-                    
-                    <!-- Característica 2 -->
-                    <div class="feature-card">
-                        <i class="fa-solid fa-mobile-screen-button feature-icon"></i>
-                        <h3 class="feature-title">100% Responsive</h3>
-                        <p>Tu catálogo se verá perfecto en celulares, tablets y computadoras.</p>
-                    </div>
-                    
-                    <!-- Característica 3 -->
-                    <div class="feature-card">
-                        <i class="fa-solid fa-coins feature-icon"></i>
-                        <h3 class="feature-title">Precios Justos</h3>
-                        <p>Soluciones accesibles pensadas por estudiantes para emprendedores.</p>
-                    </div>
-                </div>
+            
+            <div>
+                <h4 class="font-bold mb-4 text-[#29B6F6]">Enlaces</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-white transition">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-white transition">Servicios</a></li>
+                    <li><a href="portafolio.html" class="hover:text-white transition">Portafolio</a></li>
+                    <li><a href="contacto.html" class="hover:text-white transition">Contacto</a></li>
+                </ul>
             </div>
-        </section>
+            
+            <div>
+                <h4 class="font-bold mb-4 text-[#29B6F6]">Contacto</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><i class="fas fa-map-marker-alt w-5"></i> Santa Cruz, Bolivia</li>
+                    <li><i class="fas fa-phone w-5"></i> +591 627 55177</li>
+                    <li><i class="fas fa-envelope w-5"></i> orlandorojaspadilla.orp@gmail.com</li>
+                </ul>
+            </div>
+        </div>
         
-        <!-- ===============================
-            SECCIÓN CTA (CALL TO ACTION)
-        ================================ -->
-        <section class="cta-section">
-            <div class="container text-center">
-                <h2>¿Listo para mostrar tus productos al mundo?</h2>
-                <p>Hablemos de tu proyecto. Te asesoramos sin compromiso.</p>
-                <a href="contacto.html" class="btn btn-primary">Empezar Ahora</a>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <p>© 2025 Nexus Web. Todos los derechos reservados.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/59162755177" class="hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
             </div>
-        </section>
-
-    </main>
-
-    <!-- ===============================
-        FOOTER
-    ================================ -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Nexus Web Bolivia. Todos los derechos reservados.</p>
-            <p>Un emprendimiento estudiantil - Santa Cruz, Bolivia.</p>
         </div>
     </footer>
-    
-    <!-- ===============================
-        BOTÓN FLOTANTE WHATSAPP
-    ================================ -->
-    <a href="https://api.whatsapp.com/send?phone=591XXXXXXXX" target="_blank" class="whatsapp-flotante" aria-label="Contactar por WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/59162755177?text=Hola%20NexusWeb,%20quiero%20información." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
+    <script src="script.js"></script>
 </body>
 </html>

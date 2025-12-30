@@ -3,149 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios y Precios - Nexus Web</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Nuestros Servicios | Nexus Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .carousel-container { position: relative; overflow: hidden; border-radius: 1.5rem; height: 220px; }
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+        .carousel-slide { min-width: 100%; height: 100%; object-fit: cover; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; font-size: 12px; transition: background 0.3s; }
+        .carousel-btn:hover { background: rgba(0,0,0,0.7); }
+        .btn-prev { left: 10px; }
+        .btn-next { right: 10px; }
+        .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .btn-wa { background-color: #25D366; transition: all 0.3s; }
+        .btn-wa:hover { background-color: #128C7E; transform: scale(1.02); }
+    </style>
 </head>
-<body>
+<body class="bg-[#F8FAFC]">
 
-    <!-- Header y Navegación -->
-    <header class="header">
-        <nav class="nav container">
-            <a href="index.html" class="logo">Nexus Web</a>
-            <input type="checkbox" id="nav-toggle-checkbox" class="nav-toggle-checkbox">
-            <ul class="nav-menu">
-                <li class="nav-menu-item">
-                    <a href="index.html" class="nav-menu-link">Inicio</a>
-                </li>
-                <li class="nav-menu-item">
-                    <a href="servicios.html" class="nav-menu-link active">Servicios</a>
-                </li>
-                <li class="nav-menu-item">
-                    <a href="nosotros.html" class="nav-menu-link">Nosotros</a>
-                </li>
-                <li class="nav-menu-item">
-                    <a href="contacto.html" class="nav-menu-link">Contacto</a>
-                </li>
-            </ul>
-            <label for="nav-toggle-checkbox" class="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </label>
-        </nav>
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="img/logo.svg" class="w-12 h-12" alt="Logo">
+                <span class="text-2xl font-extrabold text-white tracking-tight">Nexus<span class="text-[#29B6F6]">Web</span></span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link text-white hover:text-[#29B6F6]">Inicio</a>
+                <a href="servicios.html" class="nav-link text-white border-b-2 border-[#29B6F6]">Servicios</a>
+                <a href="portafolio.html" class="nav-link text-white hover:text-[#29B6F6]">Portafolio</a>
+                <a href="contacto.html" class="bg-[#1E88E5] text-white px-6 py-2.5 rounded-full font-bold hover:bg-[#29B6F6] transition shadow-lg transform hover:-translate-y-0.5">
+                    Iniciar Proyecto
+                </a>
+            </div>
+            <button class="md:hidden text-white text-2xl focus:outline-none" id="menuBtn"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Menú Móvil -->
+        <div class="hidden absolute top-full left-0 right-0 bg-[#002244] border-t border-white/10 shadow-2xl opacity-0 -translate-y-4" id="mobileMenu">
+            <div class="p-4 flex flex-col space-y-2">
+                <a href="index.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10">Inicio</a>
+                <a href="servicios.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10">Servicios</a>
+                <a href="portafolio.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10">Portafolio</a>
+                <a href="contacto.html" class="block px-4 py-3 bg-[#1E88E5] text-white rounded-lg text-center font-bold mt-2">Iniciar Proyecto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-[#003366] pt-36 pb-20 px-6 text-center text-white">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Nuestras Soluciones Digitales</h1>
+            <p class="text-blue-100 text-lg opacity-90">Especialistas en transformar negocios convencionales en potencias digitales. Elige el motor de tu crecimiento.</p>
+        </div>
     </header>
 
-    <main>
-        <!-- Encabezado de Página -->
-        <section class="page-header">
-            <div class="container">
-                <h1>Planes y Precios</h1>
-                <p>Soluciones claras y accesibles para tu negocio.</p>
-            </div>
-        </section>
-
-        <!-- ===============================
-            SECCIÓN DE PRECIOS
-        ================================ -->
-        <section class="pricing-section">
-            <div class="container">
-                <h2 class="section-title">Elige el plan ideal para ti</h2>
-                <div class="pricing-grid">
-                    
-                    <!-- Plan Básico -->
-                    <div class="card pricing-card">
-                        <div class="card-header">
-                            <h3>Plan Básico (Landing Page)</h3>
-                            <span class="card-price">Bs 350</span>
-                            <p>Pago único</p>
+    <!-- Sección de Servicios -->
+    <section class="py-16 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- 1. Landing Page -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=800" class="carousel-slide" alt="Landing Page">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" class="carousel-slide" alt="Landing Page 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Landing Page</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed">Diseñadas para maximizar el retorno de inversión. Una estructura persuasiva enfocada en convertir visitantes en prospectos calificados de forma inmediata.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-bolt text-[#1E88E5] mr-2"></i> Alta velocidad de carga (SEO Friendly)
                         </div>
-                        <div class="card-body">
-                            <p>Ideal para presentar tu negocio, servicios e información de contacto en una sola página.</p>
-                            <ul class="card-features-list">
-                                <li><i class="fa-solid fa-check"></i> Diseño de Página Única (Landing Page)</li>
-                                <li><i class="fa-solid fa-check"></i> 100% Adaptable a celulares</li>
-                                <li><i class="fa-solid fa-check"></i> Galería de hasta 10 fotos</li>
-                                <li><i class="fa-solid fa-check"></i> Botones de WhatsApp y Redes Sociales</li>
-                                <li><i class="fa-solid fa-check"></i> Mapa de Ubicación</li>
-                            </ul>
-                            <a href="contacto.html" class="btn btn-primary card-btn">Lo quiero</a>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-bullseye text-[#1E88E5] mr-2"></i> Diseño orientado a la conversión (CTA)
                         </div>
                     </div>
-                    
-                    <!-- Plan Catálogo -->
-                    <div class="card pricing-card recommended">
-                        <div class="card-header">
-                            <span class="badge">Recomendado</span>
-                            <h3>Plan Catálogo</h3>
-                            <span class="card-price">Bs 550</span>
-                            <p>Pago único</p>
-                        </div>
-                        <div class="card-body">
-                            <p>Perfecto para mostrar todos tus productos o servicios de forma organizada y profesional.</p>
-                            <ul class="card-features-list">
-                                <li><i class="fa-solid fa-check"></i> Todo lo del Plan Básico</li>
-                                <li><i class="fa-solid fa-check"></i> <strong>Catálogo de Productos (hasta 20)</strong></li>
-                                <li><i class="fa-solid fa-check"></i> Página de producto individual (opcional)</li>
-                                <li><i class="fa-solid fa-check"></i> Múltiples secciones (Inicio, Catálogo, Contacto)</li>
-                                <li><i class="fa-solid fa-check"></i> Optimización de imágenes</li>
-                            </ul>
-                            <a href="contacto.html" class="btn btn-primary card-btn">Lo quiero</a>
-                        </div>
-                    </div>
-
+                    <a href="https://wa.me/59162755177?text=Hola! Me interesa una Landing Page" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
                 </div>
             </div>
-        </section>
 
-        <!-- ===============================
-            SECCIÓN "QUÉ INCLUYEN"
-        ================================ -->
-        <section class="features-section included-features">
-            <div class="container">
-                <h2 class="section-title">Todos nuestros planes incluyen</h2>
-                <div class="features-grid">
-                    
-                    <div class="feature-card">
-                        <i class="fa-solid fa-shield-halved feature-icon"></i>
-                        <h3 class="feature-title">Seguridad (SSL)</h3>
-                        <p>Tu sitio contará con candado de seguridad (HTTPS) para generar confianza.</p>
+            <!-- 2. Branding + Landing de Marca -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800" class="carousel-slide" alt="Branding">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800" class="carousel-slide" alt="Manual de Marca">
                     </div>
-                    
-                    <div class="feature-card">
-                        <i class="fa-solid fa-headset feature-icon"></i>
-                        <h3 class="feature-title">Soporte Estudiantil</h3>
-                        <p>Te ayudamos a desplegar tu web (Hosting y Dominio no incluidos, te asesoramos).</p>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Branding e Identidad</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed">Construimos marcas memorables. Incluye diseño de logotipo original y una <strong>Landing Page de marca</strong> dedicada a exponer toda tu identidad visual y valores.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-paint-brush text-purple-500 mr-2"></i> Logotipo original y escalable
+                        </div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-laptop-code text-purple-500 mr-2"></i> Landing Page de Branding exclusiva
+                        </div>
                     </div>
-                    
-                    <div class="feature-card">
-                        <i class="fa-solid fa-palette feature-icon"></i>
-                        <h3 class="feature-title">Diseño Personalizado</h3>
-                        <p>Ajustamos los colores y el logo para que coincidan con la identidad de tu marca.</p>
+                    <a href="https://wa.me/59162755177?text=Hola! Quiero branding completo y mi landing de marca" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Redes Sociales Centralizadas -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800" class="carousel-slide" alt="Redes Sociales 1">
+                        <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=800" class="carousel-slide" alt="Redes Sociales 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Tu Red de Contacto</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed">Creamos una página web personalizada bajo tu dominio que unifica todos tus perfiles sociales y enlaces importantes en un solo lugar profesional.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-link text-blue-400 mr-2"></i> Unificación de redes sociales (Link-in-bio)
+                        </div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-globe text-blue-400 mr-2"></i> Alojamiento bajo tu propio dominio
+                        </div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Quiero centralizar mis redes sociales en una web propia" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Sistema POS -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=800" class="carousel-slide" alt="POS 1">
+                        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=800" class="carousel-slide" alt="POS 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Sistema POS Cloud</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed">Software de gestión de punto de venta a medida. Controla stock, proveedores y ventas diarias con reportes automatizados en la nube.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-database text-green-500 mr-2"></i> Gestión de inventario en tiempo real
+                        </div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-chart-line text-green-500 mr-2"></i> Estadísticas y reportes de rentabilidad
+                        </div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Necesito un sistema POS" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Catálogo Digital -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=800" class="carousel-slide" alt="Catalogo 1">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800" class="carousel-slide" alt="Catalogo 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Catálogo Digital</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed">Muestra tus productos sin límites. Tus clientes podrán ver precios, fotos y descripciones enviando el pedido directo a tu WhatsApp.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-shopping-basket text-orange-500 mr-2"></i> Pedidos directos a WhatsApp
+                        </div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-qrcode text-orange-500 mr-2"></i> Acceso vía código QR
+                        </div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Me interesa un catálogo digital" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Página Express -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800" class="carousel-slide" alt="Express 1">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800" class="carousel-slide" alt="Express 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Página Express</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed">La solución ideal para lanzamientos inmediatos. Un sitio web informativo, profesional y totalmente funcional listo en tiempo récord.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-clock text-red-500 mr-2"></i> Entrega en 48 - 72 horas
+                        </div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg">
+                            <i class="fas fa-check-circle text-red-500 mr-2"></i> Incluye hosting por 1 año
+                        </div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Necesito una página express" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 7. Páginas Personalizadas -->
+            <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 service-card overflow-hidden flex flex-col lg:col-span-3">
+                <div class="grid md:grid-cols-2 h-full">
+                    <div class="carousel-container m-3 h-auto min-h-[250px] md:min-h-full">
+                        <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                        <div class="carousel-track">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800" class="carousel-slide" alt="Custom 1">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" class="carousel-slide" alt="Custom 2">
+                        </div>
+                        <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="p-10 flex flex-col justify-center">
+                        <h3 class="text-3xl font-bold text-[#003366] mb-4">Proyectos Especiales</h3>
+                        <p class="text-gray-600 text-base mb-6 leading-relaxed">Si tienes un requerimiento técnico específico o una idea innovadora que no encaja en las categorías anteriores, la construimos desde cero con tecnología de vanguardia.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+                            <div class="flex items-center text-xs font-bold text-gray-500 uppercase tracking-widest bg-blue-50 p-3 rounded-lg">
+                                <i class="fas fa-code text-[#1E88E5] mr-2"></i> Desarrollo Full Stack
+                            </div>
+                            <div class="flex items-center text-xs font-bold text-gray-500 uppercase tracking-widest bg-blue-50 p-3 rounded-lg">
+                                <i class="fas fa-server text-[#1E88E5] mr-2"></i> Escalabilidad Total
+                            </div>
+                        </div>
+                        <a href="https://wa.me/59162755177?text=Hola! Tengo un proyecto personalizado que quiero desarrollar" class="btn-wa w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-xl"></i> Consultar Proyecto Especial
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
 
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Nexus Web Bolivia. Todos los derechos reservados.</p>
-            <p>Un emprendimiento estudiantil - Santa Cruz, Bolivia.</p>
+    <!-- Footer -->
+    <footer class="bg-[#001529] text-white pt-16 pb-8 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="img/logo.svg" alt="" class="logo">
+                    <span class="text-xl font-bold">NexusWeb</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
+                    Ayudamos a emprendedores y empresas a destacar en la era digital con soluciones web innovadoras y efectivas.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4 text-[#29B6F6]">Enlaces</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-white transition">Inicio</a></li>
+                    <li><a href="servicios.html" class="hover:text-white transition">Servicios</a></li>
+                    <li><a href="portafolio.html" class="hover:text-white transition">Portafolio</a></li>
+                    <li><a href="contacto.html" class="hover:text-white transition">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-bold mb-4 text-[#29B6F6]">Contacto</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><i class="fas fa-map-marker-alt w-5"></i> Santa Cruz, Bolivia</li>
+                    <li><i class="fas fa-phone w-5"></i> +591 627 55177</li>
+                    <li><i class="fas fa-envelope w-5"></i> orlandorojaspadilla.orp@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <p>© 2025 Nexus Web. Todos los derechos reservados.</p>
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/59162755177" class="hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
     </footer>
-    
-    <!-- Botón Flotante WhatsApp -->
-    <a href="https://api.whatsapp.com/send?phone=591XXXXXXXX" target="_blank" class="whatsapp-flotante" aria-label="Contactar por WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/59162755177?text=Hola%20NexusWeb,%20quiero%20información." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
     </a>
 
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <!-- Script para los Carruseles -->
+    <script>
+        function moveCarousel(btn, direction) {
+            const container = btn.parentElement;
+            const track = container.querySelector('.carousel-track');
+            const slides = track.querySelectorAll('.carousel-slide');
+            
+            let currentIndex = parseInt(track.dataset.index || 0);
+            currentIndex += direction;
+            
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            track.dataset.index = currentIndex;
+        }
+
+        // Lógica del menú móvil integrada
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden', 'opacity-0', '-translate-y-4');
+                    mobileMenu.classList.add('block', 'opacity-100', 'translate-y-0');
+                } else {
+                    mobileMenu.classList.add('hidden', 'opacity-0', '-translate-y-4');
+                    mobileMenu.classList.remove('block', 'opacity-100', 'translate-y-0');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
