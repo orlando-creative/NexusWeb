@@ -5,11 +5,10 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 // CORRECCIÓN DEL ERROR: Usamos 'supabaseClient' en lugar de 'supabase' 
 // para no chocar con la librería global.
-let supabaseClient;
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 try {
-    if (window.supabase && window.supabase.createClient) {
-        supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+    if (supabaseClient) {
         console.log("Supabase inicializado correctamente.");
     } else {
         console.warn("Librería Supabase no detectada. Las reseñas no funcionarán.");
@@ -80,31 +79,186 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("No se encontraron los elementos del menú (menuBtn o mobileMenu).");
     }
 
-    // 2. RESALTAR ENLACE ACTIVO
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link, #mobileMenu a');
-
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPath || (currentPath === 'index.html' && href === './') || (href.includes(currentPath) && currentPath !== '')) {
-            link.classList.add('active');
-            if (link.closest('#mobileMenu')) {
-                link.classList.add('bg-blue-800', 'text-white');
-            }
-        }
-    });
+    // 2. NAVEGACIÓN DE PÁGINA ÚNICA (SPA)
+    initSpaNavigation();
 
     // 3. CARGAR RESEÑAS
     const reviewsContainer = document.getElementById('reviewsContainer');
     if (reviewsContainer && supabaseClient) {
         loadReviews();
     }
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    if (portfolioGrid && supabaseClient) {
+        loadPortfolio();
+    }
 
     // 4. MANEJO DE FORMULARIOS
     initForms();
+
+    // 5. EFECTOS DE SCROLL (Navbar y Animaciones)
+    initScrollEffects();
+
+    // 6. FILTRO DE PORTAFOLIO
+    initPortfolioFilter();
+
+    // 7. PORTFOLIO CARD TILT EFFECT
+    initPortfolioTilt();
 });
 
+function initSpaNavigation() {
+    // Desplazamiento suave (Smooth Scrolling)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Cerrar menú móvil al hacer clic en un enlace
+                const mobileMenu = document.getElementById('mobileMenu');
+                const menuBtn = document.getElementById('menuBtn');
+                const menuIcon = menuBtn ? menuBtn.querySelector('i') : null;
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                    mobileMenu.classList.add('opacity-0', '-translate-y-4');
+                    setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                    if (menuIcon) {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                }
+            }
+        });
+    });
+
+    // Resaltar enlace activo al desplazarse
+    const sections = document.querySelectorAll('header[id], section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileLinks = document.querySelectorAll('#mobileMenu a');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+
+                mobileLinks.forEach(link => {
+                    link.classList.remove('bg-blue-800', 'text-white');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('bg-blue-800', 'text-white');
+                    }
+                });
+            }
+        });
+    }, { rootMargin: "-50% 0px -50% 0px" }); // Se activa cuando la sección está en el medio
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+}
+
+function initScrollEffects() {
+    // Navbar Glass Effect
+    const nav = document.querySelector('.glass-nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Reveal Animations on Scroll
+    const observerOptions = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+}
+
+function initPortfolioFilter() {
+    const filterContainer = document.querySelector('.portfolio-filters');
+    if (!filterContainer) return;
+
+    const filterButtons = filterContainer.querySelectorAll('.filter-btn');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filter = button.dataset.filter;
+            // Se buscan los items DENTRO del manejador de click para no usar una lista obsoleta
+            const portfolioItems = document.querySelectorAll('#portfolioGrid .portfolio-item');
+
+            portfolioItems.forEach(item => {
+                const itemCategory = item.dataset.category;
+                const shouldShow = (filter === 'all' || itemCategory === filter);
+
+                item.classList.toggle('hidden', !shouldShow);
+            });
+        });
+    });
+}
+
+function initPortfolioTilt() {
+    const items = document.querySelectorAll('.portfolio-item');
+    items.forEach(item => {
+        const card = item.querySelector('.portfolio-card');
+        if (!card) return;
+
+        item.addEventListener('mousemove', (e) => {
+            const rect = item.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -8; // Rotación máxima de 8 grados
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(15px)`;
+        });
+
+        item.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)';
+        });
+    });
+}
+
 // --- Funciones Auxiliares ---
+
+// Función para el carrusel de la sección de servicios
+function moveCarousel(btn, direction) {
+    const container = btn.parentElement;
+    const track = container.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    
+    let currentIndex = parseInt(track.dataset.index || 0);
+    currentIndex += direction;
+    
+    if (currentIndex >= slides.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    track.dataset.index = currentIndex;
+}
 
 function getStarsHTML(rating) {
     return Array(5).fill(0).map((_, i) => 
@@ -112,10 +266,65 @@ function getStarsHTML(rating) {
     ).join('');
 }
 
+async function loadPortfolio() {
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    if (!supabaseClient) return;
+    portfolioGrid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500"><i class="fas fa-circle-notch fa-spin text-2xl mb-2"></i><br>Cargando proyectos...</div>`;
+    try {
+        const { data, error } = await supabaseClient
+            .from('projects')
+            .select('*')
+            .eq('is_visible', true)
+            .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        portfolioGrid.innerHTML = ''; // Limpiar loader
+
+        if (!data || data.length === 0) {
+            portfolioGrid.innerHTML = '<div class="col-span-full text-center text-gray-500">Pronto agregaremos nuevos proyectos.</div>';
+            return;
+        }
+
+        data.forEach(project => {
+            // Definir colores según categoría
+            let categoryColor = 'text-blue-500';
+            if(project.category === 'corporativo') categoryColor = 'text-purple-500';
+            if(project.category === 'app') categoryColor = 'text-green-500';
+
+            const item = document.createElement('div');
+            item.className = 'portfolio-item fade-in-up';
+            item.setAttribute('data-category', project.category);
+            
+            item.innerHTML = `
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg portfolio-card">
+                    <a href="${project.link || '#'}" target="_blank" class="block h-56 image-container">
+                        <img src="${project.image_url}" alt="${project.title}" class="w-full h-full object-cover">
+                        <div class="overlay">
+                            <i class="fas fa-link text-2xl text-white"></i>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <span class="text-xs font-bold ${categoryColor} uppercase tracking-wider">${project.category}</span>
+                        <h3 class="text-lg font-bold text-gray-800 mt-1">${project.title}</h3>
+                    </div>
+                </div>
+            `;
+            portfolioGrid.appendChild(item);
+        });
+
+        // Re-inicializar efectos después de cargar
+        initPortfolioTilt();
+
+    } catch (error) {
+        console.error("Error cargando portafolio:", error);
+        portfolioGrid.innerHTML = '<div class="col-span-full text-center text-red-400">Error al cargar proyectos.</div>';
+    }
+}
+
 async function loadReviews() {
     const reviewsContainer = document.getElementById('reviewsContainer');
-    try {
-        // Usamos supabaseClient aquí
+    if (supabaseClient) {
         const { data, error } = await supabaseClient
             .from('reviews')
             .select('*')
@@ -143,10 +352,9 @@ async function loadReviews() {
             `;
             reviewsContainer.appendChild(div);
         });
-
-    } catch (error) {
-        console.error("Error cargando reseñas:", error);
-        reviewsContainer.innerHTML = '<p class="text-red-400 text-sm text-center">Error de conexión con reseñas.</p>';
+    } else {
+        // Si Supabase no está inicializado, no mostramos nada o un mensaje estático.
+        reviewsContainer.innerHTML = '<p class="text-gray-400 italic text-center">No se pudieron cargar las reseñas.</p>';
     }
 }
 
@@ -154,15 +362,6 @@ function initForms() {
     // Formulario de Reseñas
     const reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
-        // Estrellas visuales
-        const starsInputs = document.querySelectorAll('input[name="rating"]');
-        starsInputs.forEach((input, idx) => {
-            input.addEventListener('change', () => {
-                 document.querySelectorAll('.star-label i').forEach((icon, i) => {
-                     icon.className = i <= idx ? 'fas fa-star text-yellow-400' : 'far fa-star text-gray-400';
-                 });
-            });
-        });
 
         reviewForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -185,8 +384,9 @@ function initForms() {
                 if (error) throw error;
                 
                 reviewForm.reset();
-                document.querySelectorAll('.star-label i').forEach(icon => icon.className = 'fas fa-star text-yellow-400');
-                document.getElementById('star5').checked = true;
+                // Reset stars to default (5 stars checked)
+                const defaultStar = document.getElementById('star5');
+                if (defaultStar) defaultStar.checked = true;
                 alert('¡Gracias por tu reseña!');
                 
                 // Si estamos en la misma página que la lista, recargar

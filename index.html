@@ -13,21 +13,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-[#F5F7FA]">
+<body class="bg-[#F5F7FA] font-sans antialiased overflow-x-hidden">
 
     <!-- Navegación -->
-    <nav class="fixed w-full z-50 glass-nav">
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="img/logo.svg" class="w-12 h-12" alt="Logo">
-                <span class="text-2xl font-extrabold text-white tracking-tight">Nexus<span class="text-[#29B6F6]">Web</span></span>
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <img src="img/logo.svg" class="w-10 h-10 transition-transform group-hover:rotate-12" alt="Logo">
+                <span class="text-2xl font-extrabold text-white tracking-tight">Nexus<span class="text-gradient">Web</span></span>
             </a>
             
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="nav-link">Inicio</a>
-                <a href="servicios.html" class="nav-link">Servicios</a>
-                <a href="portafolio.html" class="nav-link">Portafolio</a>
-                <a href="contacto.html" class="bg-[#1E88E5] text-white px-6 py-2.5 rounded-full font-bold hover:bg-[#29B6F6] transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#portafolio" class="nav-link">Portafolio</a>
+                <a href="#contacto" class="bg-gradient-to-r from-[#1E88E5] to-[#29B6F6] text-white px-6 py-2.5 rounded-full font-bold hover:shadow-[0_0_20px_rgba(41,182,246,0.5)] transition-all transform hover:-translate-y-1">
                     Iniciar Proyecto
                 </a>
             </div>
@@ -41,50 +41,50 @@
         <!-- Menú Móvil -->
         <div class="hidden absolute top-full left-0 right-0 bg-[#002244] border-t border-white/10 shadow-2xl opacity-0 -translate-y-4 transition-all duration-300 ease-in-out transform origin-top" id="mobileMenu">
             <div class="p-4 flex flex-col space-y-2">
-                <a href="index.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition">Inicio</a>
-                <a href="servicios.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition">Servicios</a>
-                <a href="portafolio.html" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition">Portafolio</a>
-                <a href="contacto.html" class="block px-4 py-3 bg-[#1E88E5] text-white rounded-lg text-center font-bold mt-2 shadow-lg">Iniciar Proyecto</a>
+                <a href="#inicio" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition">Inicio</a>
+                <a href="#servicios" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition">Servicios</a>
+                <a href="#portafolio" class="block px-4 py-3 text-white rounded-lg hover:bg-white/10 transition">Portafolio</a>
+                <a href="#contacto" class="block px-4 py-3 bg-[#1E88E5] text-white rounded-lg text-center font-bold mt-2 shadow-lg">Iniciar Proyecto</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero-gradient pt-32 pb-24 px-6 min-h-screen flex items-center relative">
+    <header id="inicio" class="hero-gradient pt-40 pb-24 px-6 min-h-screen flex items-center relative overflow-hidden">
         <div class="hero-bg-shape"></div>
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div class="fade-in-up">
                 <span class="inline-block bg-[#1E88E5]/20 text-[#29B6F6] px-4 py-1.5 rounded-full text-sm font-bold mb-6 border border-[#1E88E5]/30">
                     🚀 DESARROLLO WEB PREMIUM
                 </span>
-                <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
-                    Digitaliza tu visión con <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#29B6F6] to-[#00E676]">código perfecto.</span>
+                <h1 class="text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                    Innovación digital que <span class="text-gradient">transforma negocios.</span>
                 </h1>
                 <p class="text-lg text-blue-100 mb-8 max-w-lg leading-relaxed">
-                    Especialistas en crear sitios web rápidos, seguros y diseñados para convertir visitantes en clientes. Tu negocio merece estar online hoy mismo.
+                    Diseñamos experiencias web de alto impacto. Desde landing pages ultra-rápidas hasta sistemas complejos, llevamos tu marca al siguiente nivel tecnológico.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="contacto.html" class="bg-[#1E88E5] text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-[#1565C0] transition flex items-center justify-center gap-2 group">
+                    <a href="#contacto" class="cta-shine bg-[#1E88E5] text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-[#1565C0] transition flex items-center justify-center gap-2 group">
                         Cotizar Ahora 
                         <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="portafolio.html" class="border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition text-center backdrop-blur-sm">
+                    <a href="#portafolio" class="border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition text-center backdrop-blur-sm">
                         Ver Trabajos
                     </a>
                 </div>
             </div>
             
-            <div class="relative fade-in-up delay-200">
+            <div class="relative fade-in-up delay-200 hidden lg:block">
                 <div class="bg-white/5 backdrop-blur-xl p-4 rounded-3xl border border-white/20 shadow-2xl relative">
                     <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000&auto=format&fit=crop" alt="Dashboard Design" class="rounded-2xl shadow-inner w-full">
                     
                     <!-- Floating Badge -->
                     <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 border-l-4 border-[#00E676] animate-bounce" style="animation-duration: 3s;">
                         <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-[#00E676] text-xl">
-                            <i class="fab fa-whatsapp"></i>
+                            <i class="fab fa-whatsapp animate-pulse"></i>
                         </div>
                         <div>
-                            <p class="font-bold text-[#003366] text-sm">Respuesta Rápida</p>
+                            <p class="font-bold text-[#003366] text-sm">Online Ahora</p>
                             <p class="text-xs text-gray-500">Atención inmediata</p>
                         </div>
                     </div>
@@ -93,10 +93,35 @@
         </div>
     </header>
 
+    <!-- Sección de Estadísticas / Trust -->
+    <section class="py-12 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center fade-in-up">
+                <div>
+                    <h3 class="text-4xl font-extrabold text-[#091E42] mb-1">30+</h3>
+                    <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">Proyectos Entregados</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-extrabold text-[#1E88E5] mb-1">99%</h3>
+                    <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">Clientes Satisfechos</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-extrabold text-[#00E676] mb-1">24/7</h3>
+                    <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">Soporte Técnico</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-extrabold text-purple-600 mb-1">2 Años</h3>
+                    <p class="text-gray-500 text-sm font-medium uppercase tracking-wider">Innovando en Bolivia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Resumen de Servicios -->
     <section class="py-24 px-6 bg-white">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 fade-in-up">
+                <span class="text-[#1E88E5] font-bold text-sm uppercase tracking-widest mb-2 block">Nuestros Servicios</span>
                 <h2 class="text-4xl font-extrabold text-[#091E42] mb-4">Soluciones Integrales</h2>
                 <p class="text-gray-500 max-w-2xl mx-auto">No solo hacemos páginas web, construimos herramientas digitales que impulsan tu crecimiento.</p>
             </div>
@@ -108,7 +133,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-[#091E42] mb-3">Diseño UI/UX</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">Interfaces modernas y limpias pensadas para que tus usuarios se enamoren de tu marca al primer clic.</p>
-                    <a href="servicios.html" class="inline-block mt-4 text-[#1E88E5] font-semibold text-sm hover:underline">Saber más</a>
+                    <a href="servicios.html" class="inline-flex items-center mt-4 text-[#1E88E5] font-semibold text-sm hover:gap-2 transition-all">Saber más <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
                 </div>
 
                 <div class="p-8 rounded-2xl bg-white border border-gray-100 card-hover fade-in-up delay-200">
@@ -117,7 +142,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-[#091E42] mb-3">Desarrollo a Medida</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">Desde landing pages hasta sistemas complejos. Código limpio, rápido y optimizado para SEO.</p>
-                    <a href="servicios.html" class="inline-block mt-4 text-purple-600 font-semibold text-sm hover:underline">Saber más</a>
+                    <a href="servicios.html" class="inline-flex items-center mt-4 text-purple-600 font-semibold text-sm hover:gap-2 transition-all">Saber más <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
                 </div>
 
                 <div class="p-8 rounded-2xl bg-white border border-gray-100 card-hover fade-in-up delay-300">
@@ -126,68 +151,452 @@
                     </div>
                     <h3 class="text-xl font-bold text-[#091E42] mb-3">Marketing & SEO</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">Posicionamos tu sitio en Google y optimizamos la conversión para que vendas más.</p>
-                    <a href="servicios.html" class="inline-block mt-4 text-green-600 font-semibold text-sm hover:underline">Saber más</a>
+                    <a href="servicios.html" class="inline-flex items-center mt-4 text-green-600 font-semibold text-sm hover:gap-2 transition-all">Saber más <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso de Trabajo -->
+    <section class="py-24 px-6 bg-gray-50 bg-nexus-grid">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 fade-in-up">
+                <span class="text-[#1E88E5] font-bold text-sm uppercase tracking-widest mb-2 block">Cómo lo Hacemos</span>
+                <h2 class="text-4xl font-extrabold text-[#091E42] mb-4">Nuestro Proceso Simplificado</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Seguimos un camino claro y colaborativo para garantizar que tu visión se convierta en una realidad digital exitosa.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Línea de conexión -->
+                <div class="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-gray-200"></div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 relative">
+                    <!-- Paso 1: Descubrimiento -->
+                    <div class="text-center fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="relative inline-block bg-gray-50 p-2 rounded-full">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-blue-500 text-3xl mb-6 shadow-lg border-4 border-gray-50">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <span class="absolute -top-2 -right-2 w-10 h-10 bg-blue-500 text-white font-bold text-lg rounded-full flex items-center justify-center border-4 border-gray-50">1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#091E42] mb-2">Descubrimiento</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Entendemos tus objetivos, audiencia y mercado para definir una estrategia clara.</p>
+                    </div>
+
+                    <!-- Paso 2: Diseño -->
+                    <div class="text-center fade-in-up" style="animation-delay: 0.2s;">
+                         <div class="relative inline-block bg-gray-50 p-2 rounded-full">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-purple-500 text-3xl mb-6 shadow-lg border-4 border-gray-50">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <span class="absolute -top-2 -right-2 w-10 h-10 bg-purple-500 text-white font-bold text-lg rounded-full flex items-center justify-center border-4 border-gray-50">2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#091E42] mb-2">Diseño UI/UX</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Creamos prototipos y diseños visuales centrados en el usuario para una experiencia intuitiva.</p>
+                    </div>
+
+                    <!-- Paso 3: Desarrollo -->
+                    <div class="text-center fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="relative inline-block bg-gray-50 p-2 rounded-full">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-green-500 text-3xl mb-6 shadow-lg border-4 border-gray-50">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <span class="absolute -top-2 -right-2 w-10 h-10 bg-green-500 text-white font-bold text-lg rounded-full flex items-center justify-center border-4 border-gray-50">3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#091E42] mb-2">Desarrollo</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Escribimos código limpio y eficiente, transformando el diseño en un producto funcional.</p>
+                    </div>
+
+                    <!-- Paso 4: Despliegue -->
+                    <div class="text-center fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="relative inline-block bg-gray-50 p-2 rounded-full">
+                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-red-500 text-3xl mb-6 shadow-lg border-4 border-gray-50">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <span class="absolute -top-2 -right-2 w-10 h-10 bg-red-500 text-white font-bold text-lg rounded-full flex items-center justify-center border-4 border-gray-50">4</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#091E42] mb-2">Despliegue</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Lanzamos tu proyecto al mundo, asegurando un rendimiento óptimo y soporte continuo.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Carrusel de Tecnologías -->
+    <div class="tech-scroller bg-gray-50">
+        <div class="scroller-inner">
+            <div class="scroller-content">
+                <i class="fab fa-html5 text-orange-500"></i>
+                <i class="fab fa-css3-alt text-blue-500"></i>
+                <i class="fab fa-js-square text-yellow-400"></i>
+                <i class="fab fa-react text-cyan-400"></i>
+                <i class="fab fa-node-js text-green-500"></i>
+                <i class="fab fa-python text-blue-400"></i>
+                <i class="fab fa-git-alt text-red-500"></i>
+                <i class="fab fa-docker text-blue-600"></i>
+                <i class="fas fa-database text-indigo-400"></i>
+                <i class="fab fa-figma text-pink-500"></i>
+                <i class="fab fa-vuejs text-green-600"></i>
+                <i class="fab fa-angular text-red-600"></i>
+            </div>
+            <div class="scroller-content" aria-hidden="true">
+                <i class="fab fa-html5 text-orange-500"></i>
+                <i class="fab fa-css3-alt text-blue-500"></i>
+                <i class="fab fa-js-square text-yellow-400"></i>
+                <i class="fab fa-react text-cyan-400"></i>
+                <i class="fab fa-node-js text-green-500"></i>
+                <i class="fab fa-python text-blue-400"></i>
+                <i class="fab fa-git-alt text-red-500"></i>
+                <i class="fab fa-docker text-blue-600"></i>
+                <i class="fas fa-database text-indigo-400"></i>
+                <i class="fab fa-figma text-pink-500"></i>
+                <i class="fab fa-vuejs text-green-600"></i>
+                <i class="fab fa-angular text-red-600"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stack Tecnológico (Nueva Sección) -->
+    <section class="py-20 px-6 bg-[#020617] relative overflow-hidden">
+        <!-- Fondo sutil de malla -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#1E88E5 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl font-bold text-white mb-4">Tecnología de Vanguardia</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Utilizamos las herramientas más modernas del mercado para garantizar velocidad, seguridad y escalabilidad.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Tech Items -->
+                <div class="tech-item p-6 flex flex-col items-center justify-center gap-3 fade-in-up delay-100">
+                    <i class="fab fa-html5 text-4xl text-orange-500"></i>
+                    <span class="text-gray-300 text-xs font-bold">HTML5</span>
+                </div>
+                <div class="tech-item p-6 flex flex-col items-center justify-center gap-3 fade-in-up delay-100">
+                    <i class="fab fa-css3-alt text-4xl text-blue-500"></i>
+                    <span class="text-gray-300 text-xs font-bold">CSS3 / Tailwind</span>
+                </div>
+                <div class="tech-item p-6 flex flex-col items-center justify-center gap-3 fade-in-up delay-100">
+                    <i class="fab fa-js text-4xl text-yellow-400"></i>
+                    <span class="text-gray-300 text-xs font-bold">JavaScript</span>
+                </div>
+                <div class="tech-item p-6 flex flex-col items-center justify-center gap-3 fade-in-up delay-100">
+                    <i class="fab fa-react text-4xl text-cyan-400"></i>
+                    <span class="text-gray-300 text-xs font-bold">React</span>
+                </div>
+                <div class="tech-item p-6 flex flex-col items-center justify-center gap-3 fade-in-up delay-100">
+                    <i class="fas fa-database text-4xl text-green-400"></i>
+                    <span class="text-gray-300 text-xs font-bold">Supabase</span>
+                </div>
+                <div class="tech-item p-6 flex flex-col items-center justify-center gap-3 fade-in-up delay-100">
+                    <i class="fab fa-git-alt text-4xl text-red-500"></i>
+                    <span class="text-gray-300 text-xs font-bold">Git</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- SECCIÓN DE SERVICIOS (Contenido de servicios.html) -->
+    <!-- =============================================================== -->
+    <section id="servicios" class="py-24 px-6 bg-gray-50">
+        <div class="text-center mb-16 fade-in-up">
+            <span class="text-[#1E88E5] font-bold text-sm uppercase tracking-widest mb-2 block">Soluciones a Medida</span>
+            <h2 class="text-4xl font-extrabold text-[#091E42] mb-4">Elige el motor de tu crecimiento digital</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Desde la primera línea de código hasta el lanzamiento, creamos herramientas que transforman visitantes en clientes leales.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- 1. Landing Page -->
+            <div class="bg-white rounded-2xl shadow-xl border border-white/50 card-hover overflow-hidden flex flex-col fade-in-up">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track" data-index="0">
+                        <img src="https://venngage-wordpress.s3.amazonaws.com/uploads/2018/04/Landing-Page-Examples.png" class="carousel-slide" alt="Landing Page">
+                        <img src="https://cdn.prod.website-files.com/65bb7884c67879aa0d84f24e/65c0eb721ea864f342f436f8_What-are-landing-pages-and-why-do-you-need-to-use-them.jpeg" class="carousel-slide" alt="Landing Page 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Landing Page</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed flex-grow">Diseñadas para maximizar el retorno de inversión. Una estructura persuasiva enfocada en convertir visitantes en prospectos calificados de forma inmediata.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg"><i class="fas fa-bolt text-[#1E88E5] mr-2"></i> Carga ultra-rápida (SEO)</div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg"><i class="fas fa-bullseye text-[#1E88E5] mr-2"></i> Diseño orientado a la conversión (CTA)</div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Me interesa una Landing Page" class="btn-wa-card w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 mt-auto">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Branding + Landing de Marca -->
+            <div class="bg-white rounded-2xl shadow-xl border border-white/50 card-hover overflow-hidden flex flex-col fade-in-up delay-100">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=800" class="carousel-slide" alt="Branding">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800" class="carousel-slide" alt="Manual de Marca">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Branding e Identidad</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed flex-grow">Construimos marcas memorables. Incluye diseño de logotipo original y una <strong>Landing Page de marca</strong> dedicada a exponer toda tu identidad visual y valores.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg"><i class="fas fa-paint-brush text-purple-500 mr-2"></i> Logotipo original</div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg"><i class="fas fa-laptop-code text-purple-500 mr-2"></i> Landing Page de Branding exclusiva</div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Quiero branding completo y mi landing de marca" class="btn-wa-card w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 mt-auto">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. Redes Sociales Centralizadas -->
+            <div class="bg-white rounded-2xl shadow-xl border border-white/50 card-hover overflow-hidden flex flex-col fade-in-up delay-200">
+                <div class="carousel-container m-3">
+                    <button class="carousel-btn btn-prev" onclick="moveCarousel(this, -1)"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track" data-index="0">
+                        <img src="img/proyectos/redes1.png" class="carousel-slide" alt="Redes Sociales 1">
+                        <img src="https://images.unsplash.com/photo-1611944212129-29977ae1398c?q=80&w=800" class="carousel-slide" alt="Redes Sociales 2">
+                    </div>
+                    <button class="carousel-btn btn-next" onclick="moveCarousel(this, 1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="px-8 pb-8 pt-2 flex-grow flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#003366] mb-3">Tu Red de Contacto</h3>
+                    <p class="text-gray-600 text-sm mb-5 leading-relaxed flex-grow">Creamos una página web personalizada bajo tu dominio que unifica todos tus perfiles sociales y enlaces importantes en un solo lugar profesional.</p>
+                    <div class="space-y-2 mb-8">
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg"><i class="fas fa-link text-blue-400 mr-2"></i> Unificación de redes sociales (Link-in-bio)</div>
+                        <div class="flex items-center text-xs font-semibold text-gray-500 bg-gray-50 p-2 rounded-lg"><i class="fas fa-globe text-blue-400 mr-2"></i> Alojamiento bajo tu propio dominio</div>
+                    </div>
+                    <a href="https://wa.me/59162755177?text=Hola! Quiero centralizar mis redes sociales en una web propia" class="btn-wa-card w-full text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 mt-auto">
+                        <i class="fab fa-whatsapp text-xl"></i> Consultar Servicio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- SECCIÓN DE PORTAFOLIO (Contenido de portafolio.html) -->
+    <!-- =============================================================== -->
+    <section id="portafolio" class="py-24 px-6 bg-white">
+        <div class="text-center mb-8 fade-in-up">
+            <span class="text-[#1E88E5] font-bold text-sm uppercase tracking-widest mb-2 block">Nuestro Trabajo</span>
+            <h2 class="text-4xl font-extrabold text-[#091E42] mb-4">Proyectos que generan resultados</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Una muestra de nuestra pasión por el código y el diseño.</p>
+        </div>
+
+        <!-- Filtros de Proyectos -->
+        <div class="max-w-7xl mx-auto flex justify-center items-center gap-2 md:gap-4 portfolio-filters fade-in-up mb-12">
+            <button class="filter-btn active text-sm font-bold px-4 py-2 rounded-full bg-gray-100" data-filter="all">Todos</button>
+            <button class="filter-btn text-sm font-bold px-4 py-2 rounded-full bg-gray-100" data-filter="ecommerce">E-commerce</button>
+            <button class="filter-btn text-sm font-bold px-4 py-2 rounded-full bg-gray-100" data-filter="corporativo">Corporativo</button>
+            <button class="filter-btn text-sm font-bold px-4 py-2 rounded-full bg-gray-100" data-filter="app">App Web</button>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div id="portfolioGrid" class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Los proyectos se cargarán aquí dinámicamente desde Supabase -->
+            <div class="col-span-full text-center py-12 text-gray-500">
+                <i class="fas fa-circle-notch fa-spin text-2xl mb-2"></i><br>Cargando proyectos...
+            </div>
+        </div>
+        
+        <div class="text-center mt-16 fade-in-up">
+            <h3 class="text-2xl font-bold text-[#091E42] mb-4">¿Te gusta lo que ves?</h3>
+            <a href="#contacto" class="inline-block bg-gradient-to-r from-[#1E88E5] to-[#29B6F6] text-white px-8 py-3 rounded-xl font-bold hover:shadow-[0_0_20px_rgba(41,182,246,0.5)] transition-all transform hover:-translate-y-1">
+                Iniciar mi Proyecto
+            </a>
+        </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- SECCIÓN DE CONTACTO (Contenido de contacto.html) -->
+    <!-- =============================================================== -->
+    <section id="contacto" class="py-24 px-6 bg-gray-50">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-4xl font-extrabold text-[#091E42] mb-4">Hablemos de tu próximo <span class="text-gradient">éxito</span></h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Ya sea para una consulta rápida o para iniciar un gran proyecto, estamos aquí para ayudarte. Completa el formulario y nos pondremos en contacto.</p>
+        </div>
+
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-5 gap-16 items-start">
+            <!-- Columna Izquierda: Info -->
+            <div class="lg:col-span-2 fade-in-up">
+                <h3 class="text-2xl font-bold text-[#091E42] mb-4">Información de Contacto</h3>
+                <p class="text-gray-500 text-base mb-8 leading-relaxed">Prefieres un contacto más directo? Aquí tienes nuestras vías de comunicación. Estamos listos para escucharte.</p>
+                
+                <div class="space-y-6">
+                    <a href="https://wa.me/59162755177" class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-green-400 transition card-hover">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Respuesta rápida</p>
+                            <p class="font-bold text-[#091E42]">+591 627 55177</p>
+                        </div>
+                    </a>
+                    <a href="mailto:orlandorojaspadilla.orp@gmail.com" class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-blue-400 transition card-hover">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Correo Electrónico</p>
+                            <p class="font-bold text-[#091E42]">orlandorojaspadilla.orp@gmail.com</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Formulario Principal -->
+            <div class="lg:col-span-3 relative fade-in-up delay-200">
+                <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 relative">
+                    <h3 class="text-2xl font-bold text-[#091E42] mb-2">Cuéntanos tu idea</h3>
+                    <p class="text-gray-500 mb-8">Completa el formulario y te contactaremos por WhatsApp para agilizar el proceso.</p>
+                    
+                    <form id="whatsappForm" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Nombre Completo</label>
+                            <input type="text" id="contactName" required class="form-input w-full bg-gray-100 border-2 border-transparent rounded-xl p-4 transition" placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Servicio de Interés</label>
+                            <select id="contactService" class="form-input w-full bg-gray-100 border-2 border-transparent rounded-xl p-4 transition appearance-none">
+                                <option value="Landing Page">Landing Page</option>
+                                <option value="Branding e Identidad">Branding e Identidad</option>
+                                <option value="Catálogo Digital">Catálogo Digital</option>
+                                <option value="Sistema POS">Sistema POS</option>
+                                <option value="Proyecto Personalizado">Proyecto Personalizado</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">Detalles del Proyecto</label>
+                            <textarea id="contactMessage" required class="form-input w-full bg-gray-100 border-2 border-transparent rounded-xl p-4 h-32 transition" placeholder="Cuéntanos brevemente sobre tu idea..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-[#25d366] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#128c7e] transition-colors shadow-lg shadow-green-500/20 flex items-center justify-center gap-3 transform hover:scale-105">
+                            <i class="fab fa-whatsapp text-xl"></i> Enviar a WhatsApp
+                        </button>
+                        <p class="text-xs text-center text-gray-400 pt-2">Al hacer clic, se abrirá un chat con la información prellenada.</p>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Reseñas (Compacta) -->
-    <section class="py-20 px-6 bg-[#002244] border-t border-white/5">
+    <section class="py-20 px-6 bg-[#091E42] border-t border-white/5">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-white mb-8">Lo que dicen nuestros clientes</h2>
-            <div id="reviewsContainer" class="grid gap-4 text-left max-h-[400px] overflow-y-auto custom-scroll pr-2">
-                <div class="text-white/50 text-center py-10">
-                    <i class="fas fa-circle-notch fa-spin text-2xl"></i><br>Cargando reseñas...
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-white mb-4">Lo que dicen nuestros clientes</h2>
+                    <p class="text-gray-400 mb-8">La confianza y satisfacción de nuestros clientes es nuestra mayor recompensa.</p>
+                    <div id="reviewsContainer" class="grid gap-4 text-left max-h-[300px] overflow-y-auto custom-scroll pr-2">
+                        <!-- SKELETON LOADER -->
+                        <div class="skeleton-card">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="skeleton-line w-1/3 h-4"></div>
+                                <div class="skeleton-line w-1/4 h-4"></div>
+                            </div>
+                            <div class="skeleton-line w-full h-4 mb-2"></div>
+                            <div class="skeleton-line w-4/5 h-4"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="skeleton-line w-2/5 h-4"></div>
+                                <div class="skeleton-line w-1/4 h-4"></div>
+                            </div>
+                            <div class="skeleton-line w-full h-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Formulario para dejar reseña -->
+                <div class="fade-in-up">
+                     <form id="reviewForm" class="space-y-4 bg-white/5 p-6 rounded-2xl shadow-lg border border-white/10 text-left">
+                        <h3 class="text-xl font-bold text-white mb-4">¿Ya eres cliente? Déjanos tu opinión</h3>
+                        <input type="text" id="name" placeholder="Tu Nombre" required class="form-input w-full bg-white/10 border-2 border-transparent rounded-lg p-3 text-sm text-white placeholder-gray-400">
+                        <textarea id="message" placeholder="¿Qué tal fue tu experiencia?" required class="form-input w-full bg-white/10 border-2 border-transparent rounded-lg p-3 h-24 text-sm text-white placeholder-gray-400"></textarea>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" checked /><label for="star5" title="5 stars">★</label>
+                                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">★</label>
+                                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">★</label>
+                                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">★</label>
+                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">★</label>
+                            </div>
+                            <button type="submit" class="bg-[#1E88E5] text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-[#1565C0] transition-colors">Publicar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="mt-8">
-                <a href="contacto.html" class="text-[#29B6F6] hover:text-white transition font-medium">¿Quieres dejar tu reseña? Contáctanos primero.</a>
+        </div>
+    </section>
+
+    <!-- Call To Action Final -->
+    <section class="py-24 px-6 bg-gradient-to-br from-[#1E88E5] to-[#003366] text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-4xl mx-auto relative z-10 fade-in-up">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">¿Listo para despegar?</h2>
+            <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">No dejes que tu competencia te gane el terreno digital. Agenda una consultoría gratuita hoy mismo y hablemos de tu proyecto.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 cta-shine">
+                <a href="https://wa.me/59162755177" class="bg-[#00E676] text-[#003366] px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-white transition hover:scale-105 flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i> Hablar por WhatsApp
+                </a>
+                <a href="#contacto" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition">
+                    Ver Formulario
+                </a>
             </div>
         </div>
     </section>
 
      <!-- Footer -->
-   <!-- Footer -->
-    <footer class="bg-[#001529] text-white pt-16 pb-8 px-6 mt-auto">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
-            <div class="col-span-1 md:col-span-2">
+    <footer class="bg-[#001529] text-white pt-20 pb-8 px-6">
+        <div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <!-- Columna 1: Marca -->
+            <div class="sm:col-span-2 lg:col-span-1">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="img/logo.svg" alt="" class="logo">
-                    <span class="text-xl font-bold">NexusWeb</span>
+                    <img src="img/logo.svg" class="w-12 h-12" alt="NexusWeb Logo">
+                    <span class="text-2xl font-bold">NexusWeb</span>
                 </div>
                 <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
                     Ayudamos a emprendedores y empresas a destacar en la era digital con soluciones web innovadoras y efectivas.
                 </p>
             </div>
             
+            <!-- Columna 2: Navegación -->
             <div>
-                <h4 class="font-bold mb-4 text-[#29B6F6]">Enlaces</h4>
-                <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="index.html" class="hover:text-white transition">Inicio</a></li>
-                    <li><a href="servicios.html" class="hover:text-white transition">Servicios</a></li>
-                    <li><a href="portafolio.html" class="hover:text-white transition">Portafolio</a></li>
-                    <li><a href="contacto.html" class="hover:text-white transition">Contacto</a></li>
+                <h4 class="font-bold mb-4 text-lg text-[#29B6F6]">Navegación</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#inicio" class="hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs w-3"></i>Inicio</a></li>
+                    <li><a href="#servicios" class="hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs w-3"></i>Servicios</a></li>
+                    <li><a href="#portafolio" class="hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs w-3"></i>Portafolio</a></li>
+                    <li><a href="#contacto" class="hover:text-white transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-xs w-3"></i>Contacto</a></li>
                 </ul>
             </div>
             
+            <!-- Columna 3: Contacto -->
             <div>
-                <h4 class="font-bold mb-4 text-[#29B6F6]">Contacto</h4>
-                <ul class="space-y-2 text-sm text-gray-400">
-                    <li><i class="fas fa-map-marker-alt w-5"></i> Santa Cruz, Bolivia</li>
-                    <li><i class="fas fa-phone w-5"></i> +591 627 55177</li>
-                    <li><i class="fas fa-envelope w-5"></i> orlandorojaspadilla.orp@gmail.com</li>
+                <h4 class="font-bold mb-4 text-lg text-[#29B6F6]">Contacto</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt w-4 pt-1 text-gray-500"></i><span>Santa Cruz, Bolivia</span></li>
+                    <li class="flex items-start gap-3"><i class="fas fa-phone w-4 pt-1 text-gray-500"></i><a href="tel:+59162755177" class="hover:text-white transition-colors">+591 627 55177</a></li>
+                    <li class="flex items-start gap-3"><i class="fas fa-envelope w-4 pt-1 text-gray-500"></i><a href="mailto:orlandorojaspadilla.orp@gmail.com" class="hover:text-white transition-colors break-all">orlandorojaspadilla.orp@gmail.com</a></li>
                 </ul>
+            </div>
+
+            <!-- Columna 4: Redes Sociales -->
+            <div>
+                <h4 class="font-bold mb-4 text-lg text-[#29B6F6]">Síguenos</h4>
+                <p class="text-gray-400 text-sm mb-4">Mantente al día con nuestros últimos proyectos y noticias.</p>
+                <div class="flex space-x-3 text-xl">
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 hover:text-[#1877F2] transition-all" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 hover:text-[#E1306C] transition-all" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/59162755177" class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-white/10 hover:text-[#25D366] transition-all" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-            <p>© 2025 Nexus Web. Todos los derechos reservados.</p>
-            <div class="flex space-x-4" style="font-size: 1.25rem;">
-                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/59162755177" class="hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
-            </div>
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 text-center text-sm text-gray-500">
+            <p>© 2025 Nexus Web. Todos los derechos reservados. Diseñado y desarrollado con ❤️ en Bolivia.</p>
         </div>
     </footer>
 
@@ -195,6 +604,9 @@
     <a href="https://wa.me/59162755177?text=Hola%20NexusWeb,%20quiero%20información." class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- Lista de Reseñas (Oculta pero necesaria para script) -->
+    <div id="reviewsContainer" class="hidden"></div>
 
     <!-- Scripts -->
     <script src="script.js"></script>

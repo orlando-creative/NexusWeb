@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portafolio | Nexus Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: white; }
+        .login-screen { position: fixed; inset: 0; background: #0f172a; z-index: 50; display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de Login Simple -->
+    <div id="loginScreen" class="login-screen">
+        <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-700">
+            <h2 class="text-2xl font-bold mb-6 text-center text-blue-400">Acceso Admin</h2>
+            <form id="loginForm">
+                <input type="email" id="emailInput" placeholder="Email" required class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 mb-4 text-white focus:outline-none focus:border-blue-500">
+                <input type="password" id="passwordInput" placeholder="Contraseña" required class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 mb-4 text-white focus:outline-none focus:border-blue-500">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-lg transition">Entrar</button>
+                <p id="loginError" class="text-red-400 text-sm mt-3 text-center hidden">Email o contraseña incorrecta</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panel de Administración -->
+    <div id="adminPanel" class="hidden min-h-screen p-6">
+        <div class="max-w-4xl mx-auto">
+            <header class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold">Gestión de Portafolio</h1>
+                <div>
+                    <a href="index.html" class="text-blue-400 hover:text-white mr-4">Volver al sitio</a>
+                    <button id="logoutButton" class="text-red-400 hover:text-red-300">Cerrar Sesión</button>
+                </div>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Formulario -->
+                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <h2 class="text-xl font-bold mb-4">Agregar Nuevo Proyecto</h2>
+                    <form id="projectForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Título del Proyecto</label>
+                            <input type="text" id="pTitle" required class="w-full bg-gray-700 border border-gray-600 rounded-lg p-2.5 focus:border-blue-500 outline-none">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Categoría</label>
+                            <select id="pCategory" class="w-full bg-gray-700 border border-gray-600 rounded-lg p-2.5 focus:border-blue-500 outline-none">
+                                <option value="ecommerce">E-Commerce</option>
+                                <option value="corporativo">Corporativo</option>
+                                <option value="app">App Web</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Imagen del Proyecto</label>
+                            <input type="file" id="pImageFile" required accept="image/png, image/jpeg, image/webp" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1">Enlace al Proyecto</label>
+                            <input type="url" id="pLink" placeholder="https://..." class="w-full bg-gray-700 border border-gray-600 rounded-lg p-2.5 focus:border-blue-500 outline-none">
+                        </div>
+
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg transition flex justify-center items-center gap-2">
+                            <i class="fas fa-plus"></i> Publicar Proyecto
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Lista Previa (Simple) -->
+                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <h2 class="text-xl font-bold mb-4">Proyectos Recientes</h2>
+                    <div id="projectsList" class="space-y-3 max-h-[500px] overflow-y-auto">
+                        <p class="text-gray-500 text-center py-4">Cargando...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración (Misma que en script.js)
+        const supabaseUrl = 'https://nuevpudrinxciynmisjw.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im51ZXZwdWRyaW54Y2l5bm1pc2p3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcxMDg1NDMsImV4cCI6MjA4MjY4NDU0M30.seDOH6NCtWxXUl1xnZXGnQsacZrzB2bcG38K-o8p7cQ';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Revisa la sesión al cargar la página
+        document.addEventListener('DOMContentLoaded', async () => {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                showAdminPanel();
+            } else {
+                showLoginScreen();
+            }
+        });
+
+        // Lógica de Login
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const errorP = document.getElementById('loginError');
+            errorP.classList.add('hidden');
+
+            const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                errorP.textContent = error.message;
+                errorP.classList.remove('hidden');
+            } else {
+                showAdminPanel();
+            }
+        });
+        
+        // Lógica de Logout
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            showLoginScreen();
+        });
+
+        const showAdminPanel = () => {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminPanel').classList.remove('hidden');
+            loadProjects();
+        };
+
+        const showLoginScreen = () => {
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('adminPanel').classList.add('hidden');
+        };
+
+        // Cargar proyectos para ver
+        async function loadProjects() {
+            const { data, error } = await supabaseClient.from('projects').select('*').order('created_at', {ascending: false});
+            const list = document.getElementById('projectsList');
+            if(error) return console.error(error);
+            
+            list.innerHTML = data.map(p => `
+                <div class="flex items-center gap-3 p-3 bg-gray-700 rounded-lg">
+                    <img src="${p.image_url}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-bold truncate text-white">${p.title}</h4>
+                        <p class="text-xs text-gray-400 uppercase">${p.category}</p>
+                    </div>
+                    <button onclick="deleteProject(${p.id})" class="text-red-400 hover:text-red-300 px-2"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+
+        // Agregar proyecto
+        document.getElementById('projectForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('pTitle').value;
+            const category = document.getElementById('pCategory').value;
+            const imageFile = document.getElementById('pImageFile').files[0];
+            const link = document.getElementById('pLink').value;
+
+            if (!imageFile) {
+                alert('Por favor, selecciona una imagen.');
+                return;
+            }
+
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo imagen...';
+
+            try {
+                // 1. Subir imagen al Storage
+                const fileName = `${Date.now()}-${imageFile.name.replace(/\s/g, '-')}`;
+                const { data: uploadData, error: uploadError } = await supabaseClient.storage
+                    .from('project-images') // Asegúrate que este sea el nombre de tu Bucket
+                    .upload(fileName, imageFile);
+
+                if (uploadError) throw uploadError;
+
+                // 2. Obtener la URL pública de la imagen
+                const { data: urlData } = supabaseClient.storage
+                    .from('project-images')
+                    .getPublicUrl(fileName);
+                
+                const imageUrl = urlData.publicUrl;
+
+                // 3. Insertar los datos del proyecto en la tabla
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando proyecto...';
+                const { error: insertError } = await supabaseClient.from('projects').insert([
+                    { title, category, image_url: imageUrl, link }
+                ]);
+
+                if (insertError) throw insertError;
+
+                e.target.reset();
+                loadProjects();
+                alert('Proyecto agregado!');
+
+            } catch (error) {
+                alert('Error: ' + error.message);
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-plus"></i> Publicar Proyecto';
+            }
+        });
+
+    // Borrar proyecto
+    async function deleteProject(id) {
+        if(!confirm('¿Seguro de eliminar?')) return;
+        const { error } = await supabaseClient.from('projects').delete().eq('id', id);
+        if(!error) loadProjects();
+    }
+    </script>
+</body>
+</html>
